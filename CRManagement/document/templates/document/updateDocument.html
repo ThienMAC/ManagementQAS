@@ -1,0 +1,72 @@
+{% extends 'dashboard/dashboard_base.html' %} {% load static %} {% block content %}
+<form action="" method="POST">
+    <div class="row">
+        <div class="col-4">
+          <div class="mb-3">
+            <label class="form-label">Mã biểu mẫu</label>
+            <input type="text" class="form-control" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+              <label class="form-label">Tên biểu mẫu</label>
+              <input type="text" class="form-control" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+              <label class="form-label">Version</label>
+              <input type="text" class="form-control" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+              <label class="form-label">Khoa/ phòng quản lý</label>
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+              </select>
+          </div>
+      
+          <div class="mb-3">
+            <label class="form-label">Loại biểu mẫu</label>
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Khách hàng</label>
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Ngày tạo</label>
+            <input type="text" class="form-control" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Người tạo</label>
+            <input type="text" class="form-control" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Base64 string</label>
+            <div class="form-outline">
+              <textarea class="form-control" id="textAreaExample1" rows="4"></textarea>
+            </div>
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input">
+            <label class="form-check-label">Đang sử dụng</label>
+          </div>
+        </div>
+        <div class="col-8">
+          <h1>Chi tiết biểu mẫu</h1>
+          <iframe src="https://www.w3schools.com" title="description"></iframe>
+        </div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <button class="btn btn-danger">Làm mới</button>
+  </form>
+
+
+{% endblock %}

@@ -7,3 +7,11 @@ def documentList(request):
     }
 
     return render(request,"document/documentList.html",context)
+
+
+def updateDocument(request):
+    context={
+
+    }
+
+    return render(request,"document/updateDocument.html",context)
