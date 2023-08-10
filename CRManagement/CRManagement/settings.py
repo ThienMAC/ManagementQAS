@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
     'customer.apps.CustomerConfig',
     'document.apps.DocumentConfig',
+    'shared.apps.SharedConfig',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +82,7 @@ WSGI_APPLICATION = 'CRManagement.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'CRManagement',
+        'NAME': 'CRManagementQAS',
         'USER': 'postgres',
         'PASSWORD': '02081998',
         'HOST': 'localhost',
