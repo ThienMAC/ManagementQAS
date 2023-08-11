@@ -8,7 +8,12 @@
           <h5 class="card-title fw-semibold mb-4">Danh sách loại khoa</h5>
         </div>
         <div class="col-2">
-          <a href="{% url 'departmentTypeAdd' %}" type="button" class="btn btn-primary" ><i class="fa-solid fa-plus fa-lg"></i> Thêm mới</a>
+          <a
+            href="{% url 'departmentTypeAdd' %}"
+            type="button"
+            class="btn btn-primary"
+            ><i class="fa-solid fa-plus fa-lg"></i> Thêm mới</a
+          >
         </div>
       </div>
       <div class="table-responsive">
@@ -20,18 +25,18 @@
               </th>
               <th class="border-bottom-0">
                 <h6 class="fw-semibold mb-0">DeptType Code</h6>
-              </th>      
+              </th>
               <th class="border-bottom-0">
                 <h6 class="fw-semibold mb-0">DeptType Name</h6>
-              </th>      
+              </th>
               <th class="border-bottom-0">
                 <h6 class="fw-semibold mb-0">Status</h6>
-              </th>           
+              </th>
               <th class="border-bottom-0">
                 <h6 class="fw-semibold mb-0">Actions</h6>
               </th>
             </tr>
-            <hr>
+            <hr />
           </thead>
           <tbody>
             <tr>
@@ -45,45 +50,116 @@
               <td class="border-bottom-0">
                 <h6 class="fw-semibold mb-1">{{deptType.deptTypeName}}</h6>
               </td>
+
               <td class="border-bottom-0">
-                <p class="mb-0 fw-normal">{{deptType.isActive}}</p>
-              </td>              
-              <td class="border-bottom-0">
-                <div class="d-flex align-items-center gap-2">
-                  <a  href="{% url 'departmentTypeUpdate' deptType.id %}" id="pencil_edit"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
-                  |
-                  <a type="button" id="trash_delete" data-target="#exampleModalCenter" data-toggle="modal"><i class="fa-solid fa-trash fa-lg"></i></a>
+                <!-- Default checked -->
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" name="isActive"
+                    {% if deptType.isActive %}
+                      checked
+                    {% endif %}
+                  />
+                  <label class="custom-control-label" for="customSwitch1"></label>
                 </div>
               </td>
-            </tr>   
-            {% endfor %}                             
+              <td class="border-bottom-0">
+                <div class="d-flex align-items-center gap-2">
+                  <a
+                    href="{% url 'departmentTypeUpdate' deptType.id %}"
+                    id="pencil_edit"
+                    ><i class="fa-solid fa-pen-to-square fa-lg"></i
+                  ></a>
+                  |
+
+                  <a
+                    href="javascript:void(0)"
+                    data-toggle="modal"
+                    class="confirm-delete"
+                    data-url="{% url 'departmentTypeDelete' deptType.id %}"
+                    data-target="#deleteItemModal"
+                    data-message="You want to delete this item?"
+                    id="trash_delete"
+                  >
+                    <i class="fa-solid fa-trash fa-lg"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>
     </div>
   </div>
-</div> 
+</div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div
+  class="modal fade"
+  id="deleteItemModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="deleteItemModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Delete confirm</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        You want to delete this item?
+      <div class="modal-body confirm-delete text-center">
+        <div id="modal-message"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button  type="button" class="btn btn-danger">Delete</button>
+        <form method="POST" action="" id="form_confirm_modal">
+          {% csrf_token %}
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-dismiss="modal"
+            id="confirmButtonModal"
+          >
+            Delete
+          </button>
+        </form>
       </div>
     </div>
   </div>
 </div>
-  
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", () => {
+    let form_confirm = document.querySelector("#form_confirm_modal");
+    let buttons = document.querySelectorAll("[data-target='#deleteItemModal']");
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        // extract texts from calling element and replace the modals texts with it
+        if (button.dataset.message) {
+          document.getElementById("modal-message").innerHTML =
+            button.dataset.message;
+        }
+        // extract url from calling element and replace the modals texts with it
+        if (button.dataset.url) {
+          form_confirm.action = button.dataset.url;
+        }
+      });
+    });
+    let confirmModal = document.getElementById("confirmButtonModal");
+    confirmModal.addEventListener("click", () => {
+      form_confirm.submit();
+    });
+  });
+</script>
 
 {% endblock %}

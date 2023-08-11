@@ -56,24 +56,23 @@ def departmentTypeUpdate(request,id):
     if request.method=='POST':
         deptTypeCode=request.POST.get('deptTypeCode')
         deptTypeName=request.POST.get('deptTypeName')
+        
         if request.POST.get('isActive')=='on':
             isActive=True
         else:
             isActive=False
+        created_by=deptType.created_by
+        created_date=deptType.created_date
         modified_by=request.user
-        # deptType=DepartmentType(
-        #     deptTypeCode=deptTypeCode,
-        #     deptTypeName=deptTypeName,
-        #     isActive=isActive,
-        #     modified_by=modified_by
-        # )
-        deptType.update(
-            deptTypeCode=deptTypeCode,
-            deptTypeName=deptTypeName,
-            isActive=isActive,
-            modified_by=modified_by
-        )      
-
+       
+        deptType.deptTypeCode=deptTypeCode
+        deptType.deptTypeName=deptTypeName
+        deptType.isActive=isActive
+        deptType.created_by=created_by
+        deptType.created_date=created_date
+        deptType.modified_by=modified_by
+        
+        deptType.save()
         return redirect('departmentTypeList')
     context={
         'deptType':deptType
