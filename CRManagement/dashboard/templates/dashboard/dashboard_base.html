@@ -202,7 +202,7 @@
               <li class="sidebar-item">
                 <a
                   class="sidebar-link"
-                  href="./authentication-login.html"
+                  href="{% url 'departmentList' %}"
                   aria-expanded="false"
                 >
                   <span>
@@ -214,7 +214,19 @@
               <li class="sidebar-item">
                 <a
                   class="sidebar-link"
-                  href="./authentication-login.html"
+                  href="{% url 'roomTypeList' %}"
+                  aria-expanded="false"
+                >
+                  <span>
+                    <i class="ti ti-login"></i>
+                  </span>
+                  <span class="hide-menu">Danh mục loại phòng</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link"
+                  href="{% url 'roomList' %}"
                   aria-expanded="false"
                 >
                   <span>

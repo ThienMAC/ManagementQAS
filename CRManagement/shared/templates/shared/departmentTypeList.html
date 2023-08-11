@@ -77,7 +77,7 @@
                     class="confirm-delete"
                     data-url="{% url 'departmentTypeDelete' deptType.id %}"
                     data-target="#deleteItemModal"
-                    data-message="You want to delete this item?"
+                    data-message="You want to delete this item {{deptType.deptTypeName}}?"
                     id="trash_delete"
                   >
                     <i class="fa-solid fa-trash fa-lg"></i>

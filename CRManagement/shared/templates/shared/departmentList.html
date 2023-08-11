@@ -5,11 +5,11 @@
     <div class="card-body p-4">
       <div class="row">
         <div class="col-10">
-          <h5 class="card-title fw-semibold mb-4">Danh sách loại khoa</h5>
+          <h5 class="card-title fw-semibold mb-4">Danh sách khoa</h5>
         </div>
         <div class="col-2">
           <a
-            href="{% url 'departmentTypeAdd' %}"
+            href="{% url 'departmentAdd' %}"
             type="button"
             class="btn btn-primary"
             ><i class="fa-solid fa-plus fa-lg"></i> Thêm mới</a
@@ -24,10 +24,10 @@
                 <h6 class="fw-semibold mb-0">ID</h6>
               </th>
               <th class="border-bottom-0">
-                <h6 class="fw-semibold mb-0">DeptType Code</h6>
+                <h6 class="fw-semibold mb-0">Department Code</h6>
               </th>
               <th class="border-bottom-0">
-                <h6 class="fw-semibold mb-0">DeptType Name</h6>
+                <h6 class="fw-semibold mb-0">Department Name</h6>
               </th>
               <th class="border-bottom-0">
                 <h6 class="fw-semibold mb-0">Status</h6>
@@ -40,22 +40,22 @@
           </thead>
           <tbody>
             <tr>
-              {% for deptType in deptTypes %}
+              {% for dept in depts %}
               <td class="border-bottom-0">
-                <h6 class="fw-semibold mb-0">{{deptType.id}}</h6>
+                <h6 class="fw-semibold mb-0">{{dept.id}}</h6>
               </td>
               <td class="border-bottom-0">
-                <h6 class="fw-semibold mb-1">{{deptType.deptTypeCode}}</h6>
+                <h6 class="fw-semibold mb-1">{{dept.deptCode}}</h6>
               </td>
               <td class="border-bottom-0">
-                <h6 class="fw-semibold mb-1">{{deptType.deptTypeName}}</h6>
+                <h6 class="fw-semibold mb-1">{{dept.deptName}}</h6>
               </td>
 
               <td class="border-bottom-0">
                 <!-- Default checked -->
                 <div class="custom-control custom-switch">
                   <input type="checkbox" class="custom-control-input" name="isActive"
-                    {% if deptType.isActive %}
+                    {% if dept.isActive %}
                       checked
                     {% endif %}
                   />
@@ -65,19 +65,18 @@
               <td class="border-bottom-0">
                 <div class="d-flex align-items-center gap-2">
                   <a
-                    href="{% url 'departmentTypeUpdate' deptType.id %}"
+                    href="{% url 'departmentUpdate' dept.id %}"
                     id="pencil_edit"
                     ><i class="fa-solid fa-pen-to-square fa-lg"></i
                   ></a>
                   |
-
                   <a
                     href="javascript:void(0)"
                     data-toggle="modal"
                     class="confirm-delete"
-                    data-url="{% url 'departmentTypeDelete' deptType.id %}"
+                    data-url="{% url 'departmentDelete' dept.id %}"
                     data-target="#deleteItemModal"
-                    data-message="You want to delete this item?"
+                    data-message="You want to delete item {{dept.deptName}}?"
                     id="trash_delete"
                   >
                     <i class="fa-solid fa-trash fa-lg"></i>
