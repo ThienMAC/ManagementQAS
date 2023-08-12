@@ -27,26 +27,3 @@ def updateCustomer(request):
     return render(request,'customer/updateCustomer.html',context)
 
 #End Customer Management
-
-#Subsystem Management
-def subsystemList(request):
-    context={
-
-    }
-    return render(request,'customer/subsystemList.html',context)
-
-
-def addSubsystem(request):
-    context={
-
-    }
-    return render(request,'customer/addSubsystem.html',context)
-
-
-def updateSubsystem(request):
-    context={
-
-    }
-    return render(request,'customer/updateSubsystem.html',context)
-
-#End Subsystem Management

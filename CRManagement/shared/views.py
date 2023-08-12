@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import DepartmentType, Department, RoomType,Room
+from .models import DepartmentType, Department, RoomType,Room,DocumentType,Subsystem
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -336,3 +336,168 @@ def roomDelete(request,id):
         return redirect('roomList')
 
 #End RoomType
+
+
+#Start DocumentType
+def documentTypeList(request):
+
+    documentTypes=DocumentType.objects.all().order_by('id')
+
+    context={
+        'documentTypes':documentTypes
+    }
+    return render(request,"shared/documentTypeList.html", context)
+
+
+def documentTypeAdd(request):
+
+    context={
+            
+    }
+    if request.method=='POST':
+        documentTypeCode=request.POST.get('documentTypeCode')
+        documentTypeName=request.POST.get('documentTypeName')
+        if request.POST.get('isActive')=='on':
+            isActive=True
+        else:
+            isActive=False
+        created_by=request.user
+        modified_by=request.user
+        doctype=DocumentType(
+            documentTypeCode=documentTypeCode,
+            documentTypeName=documentTypeName,
+            isActive=isActive,
+            created_by=created_by,
+            modified_by=modified_by
+        )
+        doctype.save()
+        context={
+            'doctype':doctype
+        }
+
+        return redirect('documentTypeList')
+    else:        
+        return render(request,"shared/documentTypeAdd.html", context)
+    
+
+def documentTypeUpdate(request,id):
+
+    doctype=DocumentType.objects.get(id=id)
+    if doctype is None:
+        return
+    
+    if request.method=='POST':
+        documentTypeCode=request.POST.get('documentTypeCode')
+        documentTypeName=request.POST.get('documentTypeName')
+        if request.POST.get('isActive')=='on':
+            isActive=True
+        else:
+            isActive=False
+        created_by=request.user
+        modified_by=request.user
+       
+        doctype.documentTypeCode=documentTypeCode
+        doctype.documentTypeName=documentTypeName
+        doctype.isActive=isActive
+        doctype.created_by=created_by
+        doctype.modified_by=modified_by
+        
+        doctype.save()
+        return redirect('documentTypeList')
+    context={
+        'doctype':doctype
+    }
+    return render(request,"shared/documentTypeUpdate.html", context)
+
+def documentTypeDelete(request,id):
+    doctype=DocumentType.objects.get(id=id)
+    if doctype is None:
+        return
+    
+    else:
+        doctype.delete()
+        return redirect('documentTypeList')
+
+#End DocumentType
+
+#Start Subsystem
+def subsystemList(request):
+
+    subsystems=Subsystem.objects.all().order_by('id')
+
+    context={
+        'subsystems':subsystems
+    }
+    return render(request,"shared/subsystemList.html", context)
+
+
+def subsystemAdd(request):
+
+    context={
+            
+    }
+    if request.method=='POST':
+        subsystemCode=request.POST.get('subsystemCode')
+        subsystemName=request.POST.get('subsystemName')
+        if request.POST.get('isActive')=='on':
+            isActive=True
+        else:
+            isActive=False
+        created_by=request.user
+        modified_by=request.user
+        subsystem=Subsystem(
+            subsystemCode=subsystemCode,
+            subsystemName=subsystemName,
+            isActive=isActive,
+            created_by=created_by,
+            modified_by=modified_by
+        )
+        subsystem.save()
+        context={
+            'subsystem':subsystem
+        }
+
+        return redirect('subsystemList')
+    else:        
+        return render(request,"shared/subsystemAdd.html", context)
+    
+
+def subsystemUpdate(request,id):
+
+    subsystem=Subsystem.objects.get(id=id)
+    if subsystem is None:
+        return
+    
+    if request.method=='POST':
+        subsystemCode=request.POST.get('subsystemCode')
+        subsystemName=request.POST.get('subsystemName')
+        if request.POST.get('isActive')=='on':
+            isActive=True
+        else:
+            isActive=False
+        created_by=request.user
+        modified_by=request.user
+       
+        subsystem.documentTypeCode=subsystemCode
+        subsystem.documentTypeName=subsystemName
+        subsystem.isActive=isActive
+        subsystem.created_by=created_by
+        subsystem.modified_by=modified_by
+        
+        subsystem.save()
+        return redirect('subsystemList')
+    context={
+        'subsystem':subsystem
+    }
+    return render(request,"shared/subsystemUpdate.html", context)
+
+def subsystemDelete(request,id):
+    subsystem=Subsystem.objects.get(id=id)
+    if subsystem is None:
+        return
+    
+    else:
+        subsystem.delete()
+        return redirect('subsystemList')
+
+#End Subsystem

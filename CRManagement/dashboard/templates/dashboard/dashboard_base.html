@@ -113,7 +113,7 @@
               <li class="sidebar-item">
                 <a
                   class="sidebar-link"
-                  href="{% url 'subsystemList' %}"
+                  href="#"
                   aria-expanded="false"
                 >
                   <span>
@@ -174,19 +174,6 @@
                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                 <span class="hide-menu">Danh mục dùng chung</span>
               </li>        
-              
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link"
-                  href="./authentication-login.html"
-                  aria-expanded="false"
-                >
-                  <span>
-                    <i class="ti ti-login"></i>
-                  </span>
-                  <span class="hide-menu">Loại biểu mẫu</span>
-                </a>
-              </li>
               <li class="sidebar-item">
                 <a
                   class="sidebar-link"
@@ -194,7 +181,7 @@
                   aria-expanded="false"
                 >
                   <span>
-                    <i class="ti ti-login"></i>
+                    <i class="fas fa-snowflake fa-spin fa-lg"></i>
                   </span>
                   <span class="hide-menu">Danh mục loại khoa</span>
                 </a>
@@ -206,7 +193,7 @@
                   aria-expanded="false"
                 >
                   <span>
-                    <i class="ti ti-login"></i>
+                    <i class="fas fa-snowflake fa-spin fa-lg"></i>
                   </span>
                   <span class="hide-menu">Danh mục khoa</span>
                 </a>
@@ -218,7 +205,7 @@
                   aria-expanded="false"
                 >
                   <span>
-                    <i class="ti ti-login"></i>
+                    <i class="fas fa-snowflake fa-spin fa-lg"></i>
                   </span>
                   <span class="hide-menu">Danh mục loại phòng</span>
                 </a>
@@ -230,12 +217,36 @@
                   aria-expanded="false"
                 >
                   <span>
-                    <i class="ti ti-login"></i>
+                    <i class="fas fa-snowflake fa-spin fa-lg"></i>
                   </span>
                   <span class="hide-menu">Danh mục phòng</span>
                 </a>
               </li>
-              
+
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link"
+                  href="{% url 'documentTypeList' %}"
+                  aria-expanded="false"
+                >
+                  <span>
+                    <i class="fas fa-snowflake fa-spin fa-lg"></i>
+                  </span>
+                  <span class="hide-menu">Danh mục loại biểu mẫu</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link"
+                  href="{% url 'subsystemList' %}"
+                  aria-expanded="false"
+                >
+                  <span>
+                    <i class="fas fa-snowflake fa-spin fa-lg"></i>
+                  </span>
+                  <span class="hide-menu">Danh mục phân hệ</span>
+                </a>
+              </li>
               <li class="nav-small-cap">
                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                 <span class="hide-menu">Công cụ</span>

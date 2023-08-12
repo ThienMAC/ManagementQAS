@@ -8,10 +8,4 @@ urlpatterns = [
     path("updateCustomer",views.updateCustomer,name="updateCustomer"),
     #End URL for Customer
 
-    #URL for Subsystem
-    path("subsystemList",views.subsystemList,name="subsystemList"),
-    path("addSubsystem",views.addSubsystem,name="addSubsystem"),
-    path("updateSubsystem",views.updateSubsystem,name="updateSubsystem"),
-
-    #End URL for Subsystem
 ]

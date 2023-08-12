@@ -25,5 +25,17 @@ urlpatterns = [
     path("roomDelete/<int:id>",views.roomDelete,name="roomDelete"),
 
 
+    path("documentTypeList",views.documentTypeList,name="documentTypeList"),
+    path("documentTypeAdd",views.documentTypeAdd,name="documentTypeAdd"),
+    path("documentTypeUpdate/<int:id>",views.documentTypeUpdate,name="documentTypeUpdate"),
+    path("documentTypeDelete/<int:id>",views.documentTypeDelete,name="documentTypeDelete"),
+
+
+    path("subsystemList",views.subsystemList,name="subsystemList"),
+    path("subsystemAdd",views.subsystemAdd,name="subsystemAdd"),
+    path("subsystemUpdate/<int:id>",views.subsystemUpdate,name="subsystemUpdate"),
+    path("subsystemDelete/<int:id>",views.subsystemDelete,name="subsystemDelete"),
+
+
 
 ]
