@@ -12,7 +12,7 @@
       href="{% static 'images/logos/qa-logo.png' %}"
     />
     <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/styles_custom.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect" />
     <link
@@ -97,19 +97,11 @@
                   </span>
                   <span class="hide-menu">Danh sách khách hàng</span>
                 </a>
-              </li>
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link"
-                  href="{% url 'documentList' %}"
-                  aria-expanded="false"
-                >
-                  <span>
-                    <i class="ti ti-article"></i>
-                  </span>
-                  <span class="hide-menu">Tài liệu khách hàng</span>
-                </a>
-              </li>
+              </li>              
+              <li class="nav-small-cap">
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu">Setup khách hàng</span>
+              </li>                 
               <li class="sidebar-item">
                 <a
                   class="sidebar-link"
@@ -117,11 +109,11 @@
                   aria-expanded="false"
                 >
                   <span>
-                    <i class="ti ti-article"></i>
+                    <i class="fa-solid fa-wrench fa-lg"></i>
                   </span>
-                  <span class="hide-menu">Phân hệ theo khách hàng</span>
+                  <span class="hide-menu">Cấu hình khoa</span>
                 </a>
-              </li>
+              </li> 
               <li class="sidebar-item">
                 <a
                   class="sidebar-link"
@@ -129,11 +121,11 @@
                   aria-expanded="false"
                 >
                   <span>
-                    <i class="ti ti-article"></i>
+                    <i class="fa-solid fa-wrench fa-lg"></i>
                   </span>
-                  <span class="hide-menu">Màn hình theo phân hệ</span>
+                  <span class="hide-menu">Cấu hình phòng</span>
                 </a>
-              </li>
+              </li> 
               <li class="sidebar-item">
                 <a
                   class="sidebar-link"
@@ -141,11 +133,11 @@
                   aria-expanded="false"
                 >
                   <span>
-                    <i class="ti ti-article"></i>
+                    <i class="fa-solid fa-wrench fa-lg"></i>
                   </span>
-                  <span class="hide-menu">Yêu cầu theo màn hình</span>
+                  <span class="hide-menu">Cấu hình phân hệ</span>
                 </a>
-              </li>
+              </li> 
               <li class="sidebar-item">
                 <a
                   class="sidebar-link"
@@ -153,23 +145,11 @@
                   aria-expanded="false"
                 >
                   <span>
-                    <i class="ti ti-article"></i>
+                    <i class="fa-solid fa-wrench fa-lg"></i>
                   </span>
-                  <span class="hide-menu">Chức năng theo yêu cầu</span>
+                  <span class="hide-menu">Cấu hình biểu mẫu</span>
                 </a>
-              </li>
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link"
-                  href="#"
-                  aria-expanded="false"
-                >
-                  <span>
-                    <i class="ti ti-article"></i>
-                  </span>
-                  <span class="hide-menu">Task theo chức năng</span>
-                </a>
-              </li>   
+              </li> 
               <li class="nav-small-cap">
                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                 <span class="hide-menu">Danh mục dùng chung</span>
@@ -189,18 +169,6 @@
               <li class="sidebar-item">
                 <a
                   class="sidebar-link"
-                  href="{% url 'departmentList' %}"
-                  aria-expanded="false"
-                >
-                  <span>
-                    <i class="fas fa-snowflake fa-spin fa-lg"></i>
-                  </span>
-                  <span class="hide-menu">Danh mục khoa</span>
-                </a>
-              </li>
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link"
                   href="{% url 'roomTypeList' %}"
                   aria-expanded="false"
                 >
@@ -208,18 +176,6 @@
                     <i class="fas fa-snowflake fa-spin fa-lg"></i>
                   </span>
                   <span class="hide-menu">Danh mục loại phòng</span>
-                </a>
-              </li>
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link"
-                  href="{% url 'roomList' %}"
-                  aria-expanded="false"
-                >
-                  <span>
-                    <i class="fas fa-snowflake fa-spin fa-lg"></i>
-                  </span>
-                  <span class="hide-menu">Danh mục phòng</span>
                 </a>
               </li>
 
@@ -233,18 +189,6 @@
                     <i class="fas fa-snowflake fa-spin fa-lg"></i>
                   </span>
                   <span class="hide-menu">Danh mục loại biểu mẫu</span>
-                </a>
-              </li>
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link"
-                  href="{% url 'subsystemList' %}"
-                  aria-expanded="false"
-                >
-                  <span>
-                    <i class="fas fa-snowflake fa-spin fa-lg"></i>
-                  </span>
-                  <span class="hide-menu">Danh mục phân hệ</span>
                 </a>
               </li>
               <li class="nav-small-cap">
@@ -355,6 +299,7 @@
         <div class="container-fluid">
           {% block content %} {% endblock content %}
         </div>
+        
       </div>
     </div>
     <script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>

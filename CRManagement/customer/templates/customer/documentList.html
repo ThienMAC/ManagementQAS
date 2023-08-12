@@ -4,12 +4,10 @@
   <div class="card w-100">
     <div class="card-body p-4">
       <div class="row">
-        <div class="col-10">
-          <h5 class="card-title fw-semibold mb-4">Danh sách phòng</h5>
-        </div>
-        <div class="col-2">
+        <div class="col">
+          <h5 class="card-title fw-semibold mb-4">Danh sách khách hàng</h5>
           <a
-            href="{% url 'roomAdd' %}"
+            href="{% url 'customerAdd' %}"
             type="button"
             class="btn btn-primary"
             ><i class="fa-solid fa-plus fa-lg"></i> Thêm mới</a
@@ -24,10 +22,16 @@
                 <h6 class="fw-semibold mb-0">ID</h6>
               </th>
               <th class="border-bottom-0">
-                <h6 class="fw-semibold mb-0">Room Code</h6>
+                <h6 class="fw-semibold mb-0">Customer Code</h6>
               </th>
               <th class="border-bottom-0">
-                <h6 class="fw-semibold mb-0">Room Name</h6>
+                <h6 class="fw-semibold mb-0">Customer Name</h6>
+              </th>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Customer Address</h6>
+              </th>
+              <th class="border-bottom-0">
+                <h6 class="fw-semibold mb-0">Hotline</h6>
               </th>
               <th class="border-bottom-0">
                 <h6 class="fw-semibold mb-0">Status</h6>
@@ -40,32 +44,41 @@
           </thead>
           <tbody>
             <tr>
-              {% for room in rooms %}
+              {% for customer in customers %}
               <td class="border-bottom-0">
-                <h6 class="fw-semibold mb-0">{{room.id}}</h6>
+                <h6 class="fw-semibold mb-0">{{customer.id}}</h6>
               </td>
               <td class="border-bottom-0">
-                <h6 class="fw-semibold mb-1">{{room.roomCode}}</h6>
+                <h6 class="fw-semibold mb-1">{{customer.customerCode}}</h6>
               </td>
               <td class="border-bottom-0">
-                <h6 class="fw-semibold mb-1">{{room.roomName}}</h6>
+                <h6 class="fw-semibold mb-1">{{customer.customerName}}</h6>
+              </td>
+              <td class="border-bottom-0">
+                <h6 class="fw-semibold mb-1">{{customer.customerAddress}}</h6>
+              </td>
+              <td class="border-bottom-0">
+                <h6 class="fw-semibold mb-1">{{customer.customerHotline}}</h6>
               </td>
 
               <td class="border-bottom-0">
                 <!-- Default checked -->
                 <div class="custom-control custom-switch">
                   <input type="checkbox" class="custom-control-input" name="isActive"
-                    {% if room.isActive %}
+                    {% if customer.isActive %}
                       checked
                     {% endif %}
                   />
                   <label class="custom-control-label" for="customSwitch1"></label>
                 </div>
               </td>
+
+              
+
               <td class="border-bottom-0">
                 <div class="d-flex align-items-center gap-2">
                   <a
-                    href="{% url 'roomUpdate' room.id %}"
+                    href="{% url 'customerUpdate' customer.id %}"
                     id="pencil_edit"
                     ><i class="fa-solid fa-pen-to-square fa-lg"></i
                   ></a>
@@ -74,13 +87,15 @@
                     href="javascript:void(0)"
                     data-toggle="modal"
                     class="confirm-delete"
-                    data-url="{% url 'roomDelete' room.id %}"
+                    data-url="{% url 'customerDelete' customer.id %}"
                     data-target="#deleteItemModal"
-                    data-message="You want to delete item {{room.roomName}}?"
+                    data-message="You want to delete item {{customer.customerName}}?"
                     id="trash_delete"
                   >
                     <i class="fa-solid fa-trash fa-lg"></i>
                   </a>
+                  |
+                  <a href="#"><i class="fa-regular fa-eye fa-lg"></i></a>
                 </div>
               </td>
             </tr>

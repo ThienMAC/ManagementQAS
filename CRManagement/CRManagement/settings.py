@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'dashboard.apps.DashboardConfig',
     'customer.apps.CustomerConfig',
-    'document.apps.DocumentConfig',
     'shared.apps.SharedConfig',
 ]
 

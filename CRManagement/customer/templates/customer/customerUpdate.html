@@ -1,0 +1,33 @@
+{% extends 'dashboard/dashboard_base.html' %} {% load static %} {% block content %}
+
+<form action="{% url 'customerUpdate' customer.id %}" method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label">Customer code</label>
+      <input type="text" class="form-control" name="customerCode" required value="{{customer.customerCode}}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Customer Name</label>
+        <input type="text" class="form-control" name="customerName" required value="{{customer.customerName}}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Customer Address</label>
+      <input type="text" class="form-control" name="customerAddress" required value="{{customer.customerAddress}}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Hotline</label>
+    <input type="text" class="form-control" name="customerHotline" required value="{{customer.customerHotline}}">
+</div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" name="isActive"
+            {% if customer.isActive %}
+                checked
+            {% endif %}      
+      >
+      <label class="form-check-label" >Is Active</label>
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+    <button class="btn btn-danger">Reset</button>
+  </form>
+
+{% endblock %}

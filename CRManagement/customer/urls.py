@@ -4,8 +4,9 @@ from . import views
 urlpatterns = [
     #URL for Customer
     path("customerList",views.customerList,name="customerList"),
-    path("addCustomer",views.addCustomer,name="addCustomer"),
-    path("updateCustomer",views.updateCustomer,name="updateCustomer"),
+    path("customerAdd",views.customerAdd,name="customerAdd"),
+    path("customerUpdate/<int:id>",views.customerUpdate,name="customerUpdate"),
+    path("customerDelete/<int:id>",views.customerDelete,name="customerDelete"),
     #End URL for Customer
 
 ]
