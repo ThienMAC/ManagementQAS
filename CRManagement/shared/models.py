@@ -60,5 +60,8 @@ class FolderStructure(models.Model):
     modified_date=models.DateTimeField(auto_now_add=True, blank=True)
     modified_by=models.ForeignKey(User,related_name='user_FolderStrucure_2modified_by',on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.folderStructureName
+
 
 #End Folder Structure

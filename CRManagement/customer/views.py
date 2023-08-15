@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Customer
+from shared.models import FolderStructure
 
 # Create your views here.
 #Start Customer
@@ -95,8 +96,11 @@ def customerDelete(request,id):
 
 #Start customer Detail
 def customerDetail(request):
-    context={
 
+    folders=FolderStructure.objects.all().order_by('id')
+
+    context={
+        'folders':folders
     }
 
     return render(request,"customer/customerDetail.html",context)
