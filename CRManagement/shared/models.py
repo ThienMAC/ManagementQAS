@@ -48,3 +48,17 @@ class DocumentType(models.Model):
         return self.documentTypeName
 
 #End DocumentType
+
+
+#Start Folder Structure
+class FolderStructure(models.Model):
+    folderStructureCode=models.CharField(max_length=50,blank=False)
+    folderStructureName=models.CharField(max_length=500,blank=False)
+    isActive=models.BooleanField()
+    created_date=models.DateTimeField(auto_now_add=True, blank=True)
+    created_by=models.ForeignKey(User,related_name='user_FolderStrucure_2created_by',on_delete=models.CASCADE)
+    modified_date=models.DateTimeField(auto_now_add=True, blank=True)
+    modified_by=models.ForeignKey(User,related_name='user_FolderStrucure_2modified_by',on_delete=models.CASCADE)
+
+
+#End Folder Structure

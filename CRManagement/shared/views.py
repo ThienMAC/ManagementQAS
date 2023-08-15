@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import DepartmentType, RoomType,DocumentType
+from .models import DepartmentType, RoomType,DocumentType,FolderStructure
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -255,3 +255,87 @@ def documentTypeDelete(request,id):
         return redirect('documentTypeList')
 
 #End DocumentType
+
+
+#Start Folder Structure
+def folderStructureList(request):
+
+    folderStructures=FolderStructure.objects.all().order_by('id')
+
+    context={
+        'folderStructures':folderStructures
+    }
+    return render(request,"shared/folderStructureList.html", context)
+
+
+def folderStructureAdd(request):
+
+    context={
+            
+    }
+    if request.method=='POST':
+        folderStructureCode=request.POST.get('folderStructureCode')
+        folderStructureName=request.POST.get('folderStructureName')
+        if request.POST.get('isActive')=='on':
+            isActive=True
+        else:
+            isActive=False
+        created_by=request.user
+        modified_by=request.user
+        folderStruct=FolderStructure(
+            folderStructureCode=folderStructureCode,
+            folderStructureName=folderStructureName,
+            isActive=isActive,
+            created_by=created_by,
+            modified_by=modified_by
+        )
+        folderStruct.save()
+        context={
+            'folderStruct':folderStruct
+        }
+
+        return redirect('folderStructureList')
+    else:        
+        return render(request,"shared/folderStructureAdd.html", context)
+    
+
+def folderStructureUpdate(request,id):
+
+    folder=FolderStructure.objects.get(id=id)
+    if folder is None:
+        return
+    
+    if request.method=='POST':
+        folderStructureCode=request.POST.get('folderStructureCode')
+        folderStructureName=request.POST.get('folderStructureName')
+        if request.POST.get('isActive')=='on':
+            isActive=True
+        else:
+            isActive=False
+        created_by=request.user
+        modified_by=request.user
+       
+        folder.folderStructureCode=folderStructureCode
+        folder.folderStructureName=folderStructureName
+        folder.isActive=isActive
+        folder.created_by=created_by
+        folder.modified_by=modified_by
+        
+        folder.save()
+        return redirect('folderStructureList')
+    context={
+        'folder':folder
+    }
+    return render(request,"shared/folderStructureUpdate.html", context)
+
+
+def folderStructureDelete(request,id):
+    folder=FolderStructure.objects.get(id=id)
+    if folder is None:
+        return
+    
+    else:
+        folder.delete()
+        return redirect('folderStructureList')
+
+#End Folder Structure

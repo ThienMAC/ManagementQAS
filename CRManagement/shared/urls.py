@@ -19,4 +19,12 @@ urlpatterns = [
     path("documentTypeDelete/<int:id>",views.documentTypeDelete,name="documentTypeDelete"),
 
 
+    path("folderStructureList",views.folderStructureList,name="folderStructureList"),
+    path("folderStructureAdd",views.folderStructureAdd,name="folderStructureAdd"),
+    path("folderStructureUpdate/<int:id>",views.folderStructureUpdate,name="folderStructureUpdate"),
+    path("folderStructureDelete/<int:id>",views.folderStructureDelete,name="folderStructureDelete"),
+
+
+
+
 ]

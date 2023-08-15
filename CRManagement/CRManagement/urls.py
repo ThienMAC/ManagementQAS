@@ -25,4 +25,6 @@ urlpatterns = [
     path("",include("dashboard.urls")),
     path("customer/",include("customer.urls")),
     path("shared/",include("shared.urls")),
+    path("chatapp/",include("chatapp.urls")),
+    path("setup/",include("setup.urls")),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

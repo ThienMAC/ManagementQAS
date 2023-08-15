@@ -91,3 +91,14 @@ def customerDelete(request,id):
         return redirect('customerList')
 
 #End Customer
+
+
+#Start customer Detail
+def customerDetail(request):
+    context={
+
+    }
+
+    return render(request,"customer/customerDetail.html",context)
+
+#End Customer Detail

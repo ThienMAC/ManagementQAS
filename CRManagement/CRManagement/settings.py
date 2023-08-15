@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
     'customer.apps.CustomerConfig',
     'shared.apps.SharedConfig',
+    'chatapp.apps.ChatappConfig',
+    'setup.apps.SetupConfig',
 ]
 
 MIDDLEWARE = [

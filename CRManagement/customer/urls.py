@@ -9,4 +9,8 @@ urlpatterns = [
     path("customerDelete/<int:id>",views.customerDelete,name="customerDelete"),
     #End URL for Customer
 
+    #Start Customer Detail
+    path("customerDetail",views.customerDetail,name="customerDetail"),
+
+    #End Customer Detail
 ]

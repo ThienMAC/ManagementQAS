@@ -4,10 +4,10 @@
   <div class="card w-100">
     <div class="card-body p-4">
       <div class="row">
-        <div class="col">
-          <h5 class="card-title fw-semibold mb-4">Danh sách khách hàng</h5>
+        <div class="col-10">
+          <h5 class="card-title fw-semibold mb-4">Cấu trúc folder</h5>
           <a
-            href="{% url 'customerAdd' %}"
+            href="{% url 'folderStructureAdd' %}"
             type="button"
             class="btn btn-primary"
             ><i class="fa-solid fa-plus fa-lg"></i> Thêm mới</a
@@ -22,16 +22,10 @@
                 <h6 class="fw-semibold mb-0">ID</h6>
               </th>
               <th class="border-bottom-0">
-                <h6 class="fw-semibold mb-0">Customer Code</h6>
+                <h6 class="fw-semibold mb-0">Folder Structure Code</h6>
               </th>
               <th class="border-bottom-0">
-                <h6 class="fw-semibold mb-0">Customer Name</h6>
-              </th>
-              <th class="border-bottom-0">
-                <h6 class="fw-semibold mb-0">Customer Address</h6>
-              </th>
-              <th class="border-bottom-0">
-                <h6 class="fw-semibold mb-0">Hotline</h6>
+                <h6 class="fw-semibold mb-0">Folder Structure Name</h6>
               </th>
               <th class="border-bottom-0">
                 <h6 class="fw-semibold mb-0">Status</h6>
@@ -44,58 +38,48 @@
           </thead>
           <tbody>
             <tr>
-              {% for customer in customers %}
+              {% for ft in folderStructures %}
               <td class="border-bottom-0">
-                <h6 class="fw-semibold mb-0">{{customer.id}}</h6>
+                <h6 class="fw-semibold mb-0">{{ft.id}}</h6>
               </td>
               <td class="border-bottom-0">
-                <h6 class="fw-semibold mb-1">{{customer.customerCode}}</h6>
+                <h6 class="fw-semibold mb-1">{{ft.folderStructureCode}}</h6>
               </td>
               <td class="border-bottom-0">
-                <h6 class="fw-semibold mb-1">{{customer.customerName}}</h6>
-              </td>
-              <td class="border-bottom-0">
-                <h6 class="fw-semibold mb-1">{{customer.customerAddress}}</h6>
-              </td>
-              <td class="border-bottom-0">
-                <h6 class="fw-semibold mb-1">{{customer.customerHotline}}</h6>
+                <h6 class="fw-semibold mb-1">{{ft.folderStructureName}}</h6>
               </td>
 
               <td class="border-bottom-0">
                 <!-- Default checked -->
                 <div class="custom-control custom-switch">
                   <input type="checkbox" class="custom-control-input" name="isActive"
-                    {% if customer.isActive %}
+                    {% if ft.isActive %}
                       checked
                     {% endif %}
                   />
                   <label class="custom-control-label" for="customSwitch1"></label>
                 </div>
               </td>
-
-              
-
               <td class="border-bottom-0">
                 <div class="d-flex align-items-center gap-2">
                   <a
-                    href="{% url 'customerUpdate' customer.id %}"
+                    href="{% url 'folderStructureUpdate' ft.id %}"
                     id="pencil_edit"
                     ><i class="fa-solid fa-pen-to-square fa-lg"></i
                   ></a>
                   |
+
                   <a
                     href="javascript:void(0)"
                     data-toggle="modal"
                     class="confirm-delete"
-                    data-url="{% url 'customerDelete' customer.id %}"
+                    data-url="{% url 'folderStructureDelete' ft.id %}"
                     data-target="#deleteItemModal"
-                    data-message="You want to delete item {{customer.customerName}}?"
+                    data-message="You want to delete this item {{ft.folderStructureName}}?"
                     id="trash_delete"
                   >
                     <i class="fa-solid fa-trash fa-lg"></i>
                   </a>
-                  |
-                  <a href="#"><i class="fa-regular fa-eye fa-lg"></i></a>
                 </div>
               </td>
             </tr>
