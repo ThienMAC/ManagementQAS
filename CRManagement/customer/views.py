@@ -105,4 +105,11 @@ def customerDetail(request):
 
     return render(request,"customer/customerDetail.html",context)
 
+def contractList(request):
+    context={
+
+    }
+
+    return render(request,"customer/customerDetail/contractList.html",context)
+
 #End Customer Detail

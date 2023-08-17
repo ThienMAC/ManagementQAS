@@ -1,9 +1,10 @@
 {% extends 'dashboard/dashboard_base.html' %} {% load static %} {% block content %}
 <div class="row">
   {% for folder in folders %}    
-    <div class="row-lg-2">
+    <div class="col-lg-2">
       <ul class="list-group text-white">
-        <li class="list-group-item d-flex justify-content-between align-content-left">
+        <li  class="list-group-item d-flex justify-content-between align-content-left" id="li-detail">
+          <a id="đ" href={% url 'customerList' %}></a>
           <div class="d-flex flex-row">
             <img src="https://img.icons8.com/color/100/000000/folder-invoices.png" width="40" />
             <div class="ml-2">
@@ -19,6 +20,7 @@
     </div>   
     {% endfor %}  
 </div>
+
 
 
 {% endblock %}

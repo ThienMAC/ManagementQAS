@@ -12,5 +12,7 @@ urlpatterns = [
     #Start Customer Detail
     path("customerDetail",views.customerDetail,name="customerDetail"),
 
+    path("customerDetail/contractList",views.contractList,name="contractList"),
+
     #End Customer Detail
 ]
