@@ -1,0 +1,39 @@
+{% extends 'dashboard/dashboard_base.html' %} {% load static %} {% block content%}
+
+<form action="{% url 'contractAdd' customer.id %}" method="POST">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label class="form-label">Contract code</label>
+    <input type="text" class="form-control" name="contractCode" required />
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Contract Name</label>
+    <input type="text" class="form-control" name="contractName" required />
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Contract Version</label>
+    <input type="text" class="form-control" name="contractVersion" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Contract Type</label>
+    <input type="text" class="form-control" name="contractType" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Contract Size</label>
+    <input type="text" class="form-control" name="contractSize" />
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" name="contractStatus" />
+    <label class="form-check-label">Contract Status</label>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Contract Customer</label>
+    <input type="text" class="form-control" name="contractCustomer" />
+  </div>
+
+  <button type="submit" class="btn btn-success">Save</button>
+  <button class="btn btn-danger">Reset</button>
+</form>
+
+{% endblock %}

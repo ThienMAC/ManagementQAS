@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Customer
+from .models import Customer,Contract
 from shared.models import FolderStructure
 
 # Create your views here.
@@ -95,21 +95,74 @@ def customerDelete(request,id):
 
 
 #Start customer Detail
-def customerDetail(request):
+def customerDetail(request,customerid):
 
     folders=FolderStructure.objects.all().order_by('id')
+    customer=Customer.objects.get(id=customerid)
+    if customer is None:
+        return
+
 
     context={
-        'folders':folders
+        'folders':folders,
+        'customer':customer
     }
 
     return render(request,"customer/customerDetail.html",context)
 
-def contractList(request):
-    context={
+def contractList(request,cusid):
 
+    contracts=Contract.objects.all().order_by('id')
+    customer=Customer.objects.get(id=cusid)
+
+
+    context={
+        'contracts':contracts,
+        'customer':customer
     }
 
     return render(request,"customer/customerDetail/contractList.html",context)
+
+def contractAdd(request,cusid):
+
+    customer=Customer.objects.get(id=cusid)
+    if customer is None:
+        return
+    context={
+            
+    }
+    if request.method=='POST':
+        contractCode=request.POST.get('contractCode')
+        contractName=request.POST.get('contractName')
+        contractVersion=request.POST.get('contractVersion')
+        contractType=request.POST.get('contractType')
+        contractSize=request.POST.get('contractSize')        
+        if request.POST.get('contractStatus')=='on':
+            contractStatus=True
+        else:
+            contractStatus=False
+        contractCustomer=customer
+        created_by=request.user
+        modified_by=request.user
+        contract=Contract(
+            contractCode=contractCode,
+            contractName=contractName,
+            contractVersion=contractVersion,
+            contractType=contractType,
+            contractSize=contractSize,
+            contractStatus=contractStatus,
+            contractCustomer=contractCustomer,
+            created_by=created_by,
+            modified_by=modified_by
+        )
+        contract.save()
+        context={
+            'contract':contract,
+            'customer':customer
+        }
+
+        return redirect('contractList')
+    else:        
+        return render(request,"customer/customerDetail/contractAdd.html", context)
 
 #End Customer Detail

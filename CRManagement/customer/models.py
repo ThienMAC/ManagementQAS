@@ -27,6 +27,7 @@ class Contract(models.Model):
     contractSize=models.FloatField()
     contractBase64str=models.FileField()
     contractCustomer=models.ForeignKey(Customer,related_name='Contract_Customer_2_contracCustomer',on_delete=models.CASCADE)
+    contractStatus=models.BooleanField()
     created_date=models.DateTimeField(auto_now_add=True, blank=True)
     created_by=models.ForeignKey(User,related_name='user_Contract_2created_by',on_delete=models.CASCADE)
     modified_date=models.DateTimeField(auto_now_add=True, blank=True)

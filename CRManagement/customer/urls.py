@@ -10,9 +10,11 @@ urlpatterns = [
     #End URL for Customer
 
     #Start Customer Detail
-    path("customerDetail",views.customerDetail,name="customerDetail"),
+    path("customerDetail/<int:customerid>",views.customerDetail,name="customerDetail"),
 
-    path("customerDetail/contractList",views.contractList,name="contractList"),
+    path("customerDetail/contractList/<int:cusid>",views.contractList,name="contractList"),
+    path("customerDetail/contractList/contractAdd/<int:cusid>",views.contractAdd,name="contractAdd"),
+
 
     #End Customer Detail
 ]
