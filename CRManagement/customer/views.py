@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from .models import Customer,Contract
 from shared.models import FolderStructure
 
@@ -112,9 +112,12 @@ def customerDetail(request,customerid):
 
 def contractList(request,cusid):
 
-    contracts=Contract.objects.all().order_by('id')
     customer=Customer.objects.get(id=cusid)
 
+    if customer is None:
+        return
+    
+    contracts=get_object_or_404(Contract,contractCustomer=cusid).order_by('id')
 
     context={
         'contracts':contracts,
@@ -129,7 +132,7 @@ def contractAdd(request,cusid):
     if customer is None:
         return
     context={
-            
+         'customer':customer   
     }
     if request.method=='POST':
         contractCode=request.POST.get('contractCode')
@@ -161,7 +164,7 @@ def contractAdd(request,cusid):
             'customer':customer
         }
 
-        return redirect('contractList')
+        return redirect('contractList',cusid)
     else:        
         return render(request,"customer/customerDetail/contractAdd.html", context)
 

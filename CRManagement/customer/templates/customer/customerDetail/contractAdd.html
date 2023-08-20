@@ -1,5 +1,4 @@
 {% extends 'dashboard/dashboard_base.html' %} {% load static %} {% block content%}
-
 <form action="{% url 'contractAdd' customer.id %}" method="POST">
   {% csrf_token %}
   <div class="mb-3">
@@ -22,18 +21,21 @@
     <label class="form-label">Contract Size</label>
     <input type="text" class="form-control" name="contractSize" />
   </div>
+  {% comment %} <div class="mb-3">
+    <label class="form-label">Contract Customer</label>
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Open this select menu</option>
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+  </div> {% endcomment %}
   <div class="mb-3 form-check">
     <input type="checkbox" class="form-check-input" name="contractStatus" />
     <label class="form-check-label">Contract Status</label>
   </div>
-
-  <div class="mb-3">
-    <label class="form-label">Contract Customer</label>
-    <input type="text" class="form-control" name="contractCustomer" />
-  </div>
-
+  
   <button type="submit" class="btn btn-success">Save</button>
   <button class="btn btn-danger">Reset</button>
 </form>
-
 {% endblock %}
