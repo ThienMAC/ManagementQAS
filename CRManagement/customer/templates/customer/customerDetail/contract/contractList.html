@@ -85,15 +85,15 @@
               </td>
               
               <td class="border-bottom-0">
-                <h6 class="fw-semibold mb-1">{{contract.created_date}}</h6>
+                <h6 class="fw-semibold mb-1">{{contract.created_date|date:'d/m/y H:i:s'}}</h6>
               </td>
               <td class="border-bottom-0">
-                <h6 class="fw-semibold mb-1">{{contract.modified_date}}</h6>
+                <h6 class="fw-semibold mb-1">{{contract.modified_date|date:"d/m/y H:i:s"}}</h6>
               </td>
               <td class="border-bottom-0">
                 <div class="d-flex align-items-center gap-2">
                   <a
-                    href="{% url 'customerUpdate' customer.id %}"
+                    href="{% url 'contractUpdate' contract.id %}"
                     id="pencil_edit"
                     ><i class="fa-solid fa-pen-to-square fa-lg"></i
                   ></a>
@@ -102,15 +102,13 @@
                     href="javascript:void(0)"
                     data-toggle="modal"
                     class="confirm-delete"
-                    data-url="{% url 'customerDelete' customer.id %}"
+                    data-url="{% url 'contractDelete' contract.id %}"
                     data-target="#deleteItemModal"
-                    data-message="You want to delete item {{customer.customerName}}?"
+                    data-message="You want to delete item {{contract.contractName}}?"
                     id="trash_delete"
                   >
                     <i class="fa-solid fa-trash fa-lg"></i>
                   </a>
-                  |
-                  <a href="{% url 'customerDetail' customer.id %}"><i class="fa-regular fa-eye fa-lg"></i></a>
                 </div>
               </td>
             </tr>

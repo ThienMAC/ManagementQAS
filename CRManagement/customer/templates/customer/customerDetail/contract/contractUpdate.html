@@ -1,0 +1,38 @@
+{% extends 'dashboard/dashboard_base.html' %} {% load static %} {% block content %}
+
+<form action="{% url 'contractUpdate' contract.id %}" method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label">Customer code</label>
+      <input type="text" class="form-control" name="contractCode" required value="{{contract.contractCode}}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Customer Name</label>
+        <input type="text" class="form-control" name="contractName" required value="{{contract.contractName}}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Customer Address</label>
+      <input type="text" class="form-control" name="contractVersion" required value="{{contract.contractVersion}}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Hotline</label>
+    <input type="text" class="form-control" name="contractType" required value="{{contract.contractType}}">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Hotline</label>
+    <input type="text" class="form-control" name="contractSize" required value="{{contract.contractSize}}">
+</div>
+    <div class="mb-3 form-check">
+    <label class="form-check-label" >Contract Status</label>
+      <input type="checkbox" class="form-check-input" name="contractStatus"
+            {% if contract.contractStatus %}
+                checked
+            {% endif %}      
+      >
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+    <button class="btn btn-danger">Reset</button>
+  </form>
+
+{% endblock %}

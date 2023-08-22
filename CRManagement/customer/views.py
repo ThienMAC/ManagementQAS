@@ -117,14 +117,14 @@ def contractList(request,cusid):
     if customer is None:
         return
     
-    contracts=get_object_or_404(Contract,contractCustomer=cusid).order_by('id')
+    contracts=Contract.objects.filter(contractCustomer=customer.id).order_by('id')
 
     context={
         'contracts':contracts,
         'customer':customer
     }
 
-    return render(request,"customer/customerDetail/contractList.html",context)
+    return render(request,"customer/customerDetail/contract/contractList.html",context)
 
 def contractAdd(request,cusid):
 
@@ -166,6 +166,61 @@ def contractAdd(request,cusid):
 
         return redirect('contractList',cusid)
     else:        
-        return render(request,"customer/customerDetail/contractAdd.html", context)
+        return render(request,"customer/customerDetail/contract/contractAdd.html", context)
+    
+
+def contractUpdate(request,contractid):
+   
+    contract=Contract.objects.get(id=contractid)
+    
+    if contract is None:
+        return
+    
+    customer=Customer.objects.get(customerName=contract.contractCustomer)
+
+    if customer is None:
+        return
+    context={
+        'contract':contract,
+    }
+
+    if request.method=='POST':
+        contractCode=request.POST.get('contractCode')
+        contractName=request.POST.get('contractName')
+        contractVersion=request.POST.get('contractVersion')
+        contractType=request.POST.get('contractType')
+        contractSize=request.POST.get('contractSize')        
+        if request.POST.get('contractStatus')=='on':
+            contractStatus=True
+        else:
+            contractStatus=False
+        created_by=request.user
+        modified_by=request.user
+       
+        contract.contractCode=contractCode
+        contract.contractName=contractName
+        contract.contractVersion=contractVersion
+        contract.contractType=contractType
+        contract.contractSize=contractSize
+        contract.contractStatus=contractStatus
+        contract.created_by=created_by
+        contract.modified_by=modified_by
+        
+        contract.save()
+
+        return redirect('contractList',customer.id)
+    else:        
+        return render(request,"customer/customerDetail/contract/contractUpdate.html", context)
+    
+
+def contractDelete(request,contractid):
+    contract=Contract.objects.get(id=contractid)
+    if contract is None:
+        return
+
+    else:
+        customer=Customer.objects.get(customerName=contract.contractCustomer)
+        contract.delete()
+        return redirect('contractList',customer.id)
 
 #End Customer Detail
