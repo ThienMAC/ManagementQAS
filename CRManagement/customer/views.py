@@ -145,6 +145,8 @@ def contractAdd(request,cusid):
         else:
             contractStatus=False
         contractCustomer=customer
+        contractBase64str=request.POST.get('contractBase64str')
+
         created_by=request.user
         modified_by=request.user
         contract=Contract(
@@ -155,6 +157,7 @@ def contractAdd(request,cusid):
             contractSize=contractSize,
             contractStatus=contractStatus,
             contractCustomer=contractCustomer,
+            contractBase64str=contractBase64str,
             created_by=created_by,
             modified_by=modified_by
         )
@@ -194,6 +197,7 @@ def contractUpdate(request,contractid):
             contractStatus=True
         else:
             contractStatus=False
+        contractBase64str=request.POST.get('contractBase64str')
         created_by=request.user
         modified_by=request.user
        
@@ -203,6 +207,7 @@ def contractUpdate(request,contractid):
         contract.contractType=contractType
         contract.contractSize=contractSize
         contract.contractStatus=contractStatus
+        contract.contractBase64str=contractBase64str
         contract.created_by=created_by
         contract.modified_by=modified_by
         

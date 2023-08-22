@@ -33,15 +33,23 @@
           <div class="file-select">
             <div class="file-select-button" id="fileName">Choose File</div>
             <div class="file-select-name" id="noFile">No file chosen...</div>
-            <input type="file" name="chooseFile" id="chooseFile" />
+            <input type="file" id="chooseFile" />
           </div>
         </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Base64 String file</label>
+        <textarea
+          class="form-control"
+          id="textArea_contract"
+          name="contractBase64str"
+          readonly
+        ></textarea>
       </div>
       <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" name="contractStatus" />
         <label class="form-check-label">Contract Status</label>
       </div>
-
       <button type="submit" class="btn btn-success">Save</button>
       <button class="btn btn-danger">Reset</button>
     </form>

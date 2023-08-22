@@ -325,6 +325,10 @@ input[type=checkbox] {
     left: 6px;
    }
 
+  #textArea_contract{
+    height: 200px;
+  }
+
 /* End Folder */
 
 
