@@ -25,7 +25,7 @@ class Contract(models.Model):
     contractVersion=models.CharField(max_length=20,blank=False)
     contractType=models.CharField(max_length=200,blank=False)
     contractSize=models.FloatField()
-    contractBase64str=models.TextField(blank=True)
+    contractFile=models.FileField()
     contractCustomer=models.ForeignKey(Customer,related_name='Contract_Customer_2_contracCustomer',on_delete=models.CASCADE)
     contractStatus=models.BooleanField()
     created_date=models.DateTimeField(auto_now_add=True, blank=True)

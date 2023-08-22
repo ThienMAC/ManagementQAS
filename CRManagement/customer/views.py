@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from .models import Customer,Contract
 from shared.models import FolderStructure
+from .functions import handle_uploaded_file
 
 # Create your views here.
 #Start Customer
@@ -145,8 +146,10 @@ def contractAdd(request,cusid):
         else:
             contractStatus=False
         contractCustomer=customer
-        contractBase64str=request.POST.get('contractBase64str')
-
+        
+        handle_uploaded_file(request.FILES['contractFile'])
+        contractFile=request.POST.get('contractFile')
+        print(contractFile)
         created_by=request.user
         modified_by=request.user
         contract=Contract(
@@ -157,7 +160,7 @@ def contractAdd(request,cusid):
             contractSize=contractSize,
             contractStatus=contractStatus,
             contractCustomer=contractCustomer,
-            contractBase64str=contractBase64str,
+            contractFile=contractFile,
             created_by=created_by,
             modified_by=modified_by
         )
@@ -197,7 +200,7 @@ def contractUpdate(request,contractid):
             contractStatus=True
         else:
             contractStatus=False
-        contractBase64str=request.POST.get('contractBase64str')
+        contractFile=request.POST.get('contractFile')
         created_by=request.user
         modified_by=request.user
        
@@ -207,7 +210,7 @@ def contractUpdate(request,contractid):
         contract.contractType=contractType
         contract.contractSize=contractSize
         contract.contractStatus=contractStatus
-        contract.contractBase64str=contractBase64str
+        contract.contractFile=contractFile
         contract.created_by=created_by
         contract.modified_by=modified_by
         

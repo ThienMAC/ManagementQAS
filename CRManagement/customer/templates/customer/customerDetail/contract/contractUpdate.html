@@ -37,21 +37,9 @@
         <div class="file-select">
           <div class="file-select-button" id="fileName">Choose File</div>
           <div class="file-select-name" id="noFile">No file chosen...</div>
-          <input type="file" id="chooseFile" />
+          <input type="file" name="contractFile" id="chooseFile" />
         </div>
       </div>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Base64 String file</label>
-      <textarea
-        class="form-control"
-        id="textArea_contract"
-        name="contractBase64str"
-        readonly
-      >
-        {{contract.contractBase64str}}
-      </textarea>
-
     </div>
 
     <button type="submit" class="btn btn-success">Save</button>
