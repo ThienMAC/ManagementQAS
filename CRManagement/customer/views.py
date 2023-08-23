@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from .models import Customer,Contract
 from shared.models import FolderStructure
-from .functions import handle_uploaded_file
+from .functions import handle_uploaded_file,delete_upload_file
 
 # Create your views here.
 #Start Customer
@@ -148,8 +148,7 @@ def contractAdd(request,cusid):
         contractCustomer=customer
         
         handle_uploaded_file(request.FILES['contractFile'])
-        contractFile=request.POST.get('contractFile')
-        print(contractFile)
+        contractFile=request.FILES['contractFile']
         created_by=request.user
         modified_by=request.user
         contract=Contract(
@@ -182,6 +181,8 @@ def contractUpdate(request,contractid):
     if contract is None:
         return
     
+    
+
     customer=Customer.objects.get(customerName=contract.contractCustomer)
 
     if customer is None:
@@ -191,6 +192,7 @@ def contractUpdate(request,contractid):
     }
 
     if request.method=='POST':
+        
         contractCode=request.POST.get('contractCode')
         contractName=request.POST.get('contractName')
         contractVersion=request.POST.get('contractVersion')
@@ -200,7 +202,10 @@ def contractUpdate(request,contractid):
             contractStatus=True
         else:
             contractStatus=False
-        contractFile=request.POST.get('contractFile')
+
+        delete_upload_file(contract.contractFile)
+        handle_uploaded_file(request.FILES['contractFile'])
+        contractFile=request.FILES['contractFile']
         created_by=request.user
         modified_by=request.user
        
@@ -228,6 +233,7 @@ def contractDelete(request,contractid):
 
     else:
         customer=Customer.objects.get(customerName=contract.contractCustomer)
+        delete_upload_file(contract.contractFile)
         contract.delete()
         return redirect('contractList',customer.id)
 

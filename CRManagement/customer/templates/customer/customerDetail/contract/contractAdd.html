@@ -1,10 +1,6 @@
 {% extends 'dashboard/dashboard_base.html' %} {% load static %} {% block content%}
-<script
-  type="text/javascript"
-  src="//code.jquery.com/jquery-1.10.2.min.js"
-></script>
-<div class="row">
-  <div class="col-4">
+
+
     <form action="{% url 'contractAdd' customer.id %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="mb-3">
@@ -44,10 +40,5 @@
       <button type="submit" class="btn btn-success">Save</button>
       <button class="btn btn-danger">Reset</button>
     </form>
-  </div>
 
-  <div class="col-8">
-    <p>Frame to display document</p>
-  </div>
-</div>
 {% endblock %}

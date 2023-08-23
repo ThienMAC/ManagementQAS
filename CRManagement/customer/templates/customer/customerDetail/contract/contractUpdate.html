@@ -1,6 +1,7 @@
 {% extends 'dashboard/dashboard_base.html' %} {% load static %} {% block content %}
-
-<form action="{% url 'contractUpdate' contract.id %}" method="POST">
+<div class="row">
+  <div class="col-4">
+<form action="{% url 'contractUpdate' contract.id %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="mb-3">
       <label class="form-label">Customer code</label>
@@ -36,8 +37,14 @@
       <div class="file-upload">
         <div class="file-select">
           <div class="file-select-button" id="fileName">Choose File</div>
-          <div class="file-select-name" id="noFile">No file chosen...</div>
-          <input type="file" name="contractFile" id="chooseFile" />
+          <div class="file-select-name" id="noFile">
+            {% if contract.contractFile %}
+                {{contract.contractFile}}
+            {% else %}
+              No file chosen...
+            {% endif %}
+          </div>
+          <input type="file" id="chooseFile" name="contractFile"/>
         </div>
       </div>
     </div>
@@ -45,5 +52,16 @@
     <button type="submit" class="btn btn-success">Save</button>
     <button class="btn btn-danger">Reset</button>
   </form>
-
-{% endblock %}
+</div>
+<div class="col-8">  
+	<iframe
+		src="{% static 'upload/' %}{{ contract.contractFile }}"
+		width="100%"
+		height="100%"
+		style="border: none;"
+	>
+	</iframe>
+  <iframe src="https://view.officeapps.live.com/op/view.aspx?src=https://docs.google.com/document/d/1Ni6zDcveIztwJMNXycqL3MO9sEcNhX8j/edit?usp=sharing&ouid=112724078845044077674&rtpof=true&sd=true" width="600" height="780" style="border: none;"></iframe>
+</div>
+</div>
+{% endblock %} 
